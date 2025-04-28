@@ -19,31 +19,31 @@ import myspring.di.xml.StringPrinter;
 public class HelloConfig {
 	@Autowired
 	private Environment env;
-	
+
 	@Bean
 	public Printer stringPrinter() {
 		return new StringPrinter();
 	}
-	
+
 	@Bean
 	public Printer consolePrinter() {
 		return new ConsolePrinter();
 	}
-	
+
 	@Bean
 	public Hello hello() {
-		Hello hello = new Hello(); //alt + shift + l(엘)
-		//hello.setName("스프링")  env.getProperty("myName1") == "스프링"
-		hello.setName(env.getProperty("myName1")); //myName1=스프링
+		Hello hello = new Hello(); // alt + shift + l(엘)
+		// hello.setName("스프링") env.getProperty("myName1") == "스프링"
+		hello.setName(env.getProperty("myName1")); // myName1=스프링
 		hello.setPrinter(stringPrinter());
 		hello.setNames(namesList());
 		return hello;
 	}
-	
+
 	@Bean
 	public List<String> namesList() {
 		String names = env.getProperty("names.list.of.strings");
 		return Arrays.asList(names.split(","));
 	}
-	
+
 }
