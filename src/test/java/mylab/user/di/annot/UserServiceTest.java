@@ -1,23 +1,37 @@
 package mylab.user.di.annot;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
 import org.junit.jupiter.api.Test;
-import org.springframework.context.ApplicationContext;
-import org.springframework.context.support.ClassPathXmlApplicationContext;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+@ExtendWith(SpringExtension.class)
+@ContextConfiguration(locations = "classpath:mylab-user-di.xml")
 public class UserServiceTest {
-
+    
+    @Autowired
+    private UserService userService;
+    
     @Test
-    public void testUserServiceInjection() {
-        ApplicationContext context = new ClassPathXmlApplicationContext("mylab-user-di.xml");
-        UserService userService = context.getBean(UserService.class);
-
-        assertNotNull(userService, "UserService 빈이 주입되지 않았습니다.");
-        assertNotNull(userService.getUserRepository(), "UserRepository가 주입되지 않았습니다.");
-        assertNotNull(userService.getSecurityService(), "SecurityService가 주입되지 않았습니다.");
-        assertEquals("MySQL", userService.getUserRepository().getDbType(), "DB 타입이 다릅니다.");
-
-        boolean result = userService.registerUser("user01", "햄", "password123");
-        assertTrue(result, "registerUser 메서드가 실패했습니다.");
+    public void testUserService() {
+        assertNotNull(userService);
+        
+        // UserRepository 확인
+        // userService.getUserRepository() => UserRepository
+        assertNotNull(userService.getUserRepository());
+        assertEquals("MySQL", userService.getUserRepository().getDbType());
+        
+        // SecurityService(어노테이션으로 주입) 확인
+        assertNotNull(userService.getSecurityService());
+        
+        // 기능 테스트
+        assertTrue(userService.registerUser("user1", "홍길동", "password123"));
+        assertFalse(userService.registerUser("user2", "김철수", ""));
     }
 }
