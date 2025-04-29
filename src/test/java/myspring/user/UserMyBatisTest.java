@@ -19,6 +19,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import myspring.user.dao.mapper.UserMapper;
 import myspring.user.vo.UserVO;
 
 @ExtendWith(SpringExtension.class)
@@ -34,18 +35,28 @@ public class UserMyBatisTest {
 
 	@Autowired
 	SqlSession sqlSession;
-	
+
+	@Autowired
+	UserMapper userMapper;
+
 	@Test
-	void userMapper() {
-		UserVO user = sqlSession.selectOne("userNS.selectUserById", "dooly");
+	void mapper() {
+		UserVO user = userMapper.selectUserById("gildong");
 		logger.debug(user);
 	}
 
-	@Test @Disabled
-	void sqlSession() {
-		System.out.println(sessionFactory.getClass().getName());
+	@Test
+	@Disabled
+	void userMapper() {
 		UserVO user = sqlSession.selectOne("userNS.selectUserById", "dooly");
 		logger.debug(user);
+
+	}
+
+	@Test
+	@Disabled
+	void sqlSession() {
+		System.out.println(sessionFactory.getClass().getName());
 
 		// Anonymous Inner Class (익명 내부 클래스)
 		List<UserVO> userList = sqlSession.selectList("userNS.selectUserList"); // List<UserVO>
@@ -60,10 +71,11 @@ public class UserMyBatisTest {
 				logger.debug(user);
 			}
 		});
+
+		// Consumer 추상메서드 void accept(T t)
 		// .forEach(Consumer)에서 Consumer를 Lambda Expression (람다식)으로 선언하는 방식
 		userList.forEach(user1 -> System.out.println(user1));
-		
-		// .forEach(Consumer)에서 Consumer를 Method Reference 로 선언하는 방식
+		// .forEach(Consumer)에서 Consumer를 Method Reference 으로 선언하는 방식
 		userList.forEach(System.out::println);
 	}
 
