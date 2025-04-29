@@ -18,14 +18,11 @@
 	
 	<!-- SqlSessionFactoryBean 설정 -->
 	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
-	
-	<!-- setDataSource(DataSource source) -->
+		<!-- setDataSource(DataSource source) -->
 		<property name="dataSource" ref="dataSource" />
-		
-		<!-- setConfigLocation(Resource configLocation => MyBatis config xml 설정하는 것-->
+		<!-- setConfigLocation(Resource configLocation) MyBatis config xml-->
 		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />
-		
-		<!-- setMapperLocations(Resource... mapperLocations SQL문이 포함된 mapper xml 설정하는 것-->
+		<!-- setMapperLocations(Resource... mapperLocations) SQL문이 포함된 mapper xml -->
 		<property name="mapperLocations">
 			<list>
 				<value>classpath:mybatis/*Mapper.xml</value>
@@ -33,8 +30,16 @@
 		</property>
 	</bean>
 	
-	<!-- SqlSession 설정 constructor injection 방식만 가능 (기본 생성자가 없기때문)-->
+	<!-- SqlSession 설정 consturctor injection 방식만 가능함 (기본생성자가 없기 때문에)-->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
+	
+	<!-- MapperScannerConfigurer 설정 Mapper 인터페이스를 스캐닝하는 역할-->
+	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+		
+		<!-- "myspring.**.dao.mapper" 패키지명이 myspring.~~.dao.mapper인 것-->
+		<property name="basePackage" value="myspring.**.dao.mapper"/>
+		<property name="sqlSessionTemplateBeanName" value="sqlSession" /> 
 	</bean>
 </beans>
