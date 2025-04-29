@@ -3,6 +3,8 @@ package myspring.user;
 import java.sql.Connection;
 import java.sql.DatabaseMetaData;
 import java.sql.SQLException;
+import java.util.List;
+import java.util.function.Consumer;
 
 import javax.sql.DataSource;
 
@@ -38,7 +40,11 @@ public class UserMyBatisTest {
 		UserVO user = sqlSession.selectOne("userNS.selectUserById", "dooly");
 		logger.debug(user);
 		
-		sqlSession.selectList("userNS.selectUserById").forEach(action); // List<UserVO>
+		// Anonymous Inner Class (익명 클래스)
+		List<UserVO> userList = sqlSession.selectList("userNS.selectUserById"); // List<UserVO>
+		for (UserVO userVO : userList) {
+			logger.debug(userVO);
+		}
 	}
 	
 	
