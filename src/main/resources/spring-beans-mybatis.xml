@@ -9,7 +9,32 @@
 	<context:property-placeholder location="classpath:values.properties"/>
 	
 	<!-- DataSource 구현체인 HikariDataSource 클래스를 Bean으로 설정하기 -->
-	<bean id="dataSource" class="com.zaxxer.hikary.HikaryDataSource"
+	<bean id="dataSource" class="com.zaxxer.hikari.HikariDataSource"
 		p:driverClassName="${db.driverClass}"
+		p:jdbcUrl="${db.url}" 
+		p:username="${db.username}"
+		p:password="${db.password}"
 	/>
+	
+	<!-- SqlSessionFactoryBean 설정 -->
+	<bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+	
+	<!-- setDataSource(DataSource source) -->
+		<property name="dataSource" ref="dataSource" />
+		
+		<!-- setConfigLocation(Resource configLocation => MyBatis config xml 설정하는 것-->
+		<property name="configLocation" value="classpath:mybatis/SqlMapConfig.xml" />
+		
+		<!-- setMapperLocations(Resource... mapperLocations SQL문이 포함된 mapper xml 설정하는 것-->
+		<property name="mapperLocations">
+			<list>
+				<value>classpath:mybatis/*Mapper.xml</value>
+			</list>
+		</property>
+	</bean>
+	
+	<!-- SqlSession 설정 constructor injection 방식만 가능 (기본 생성자가 없기때문)-->
+	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionTemplate">
+		<constructor-arg ref="sqlSessionFactory" />
+	</bean>
 </beans>
