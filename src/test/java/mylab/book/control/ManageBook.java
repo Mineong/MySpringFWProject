@@ -1,6 +1,6 @@
-package workshop.book.control;
+package mylab.book.control;
 
-import workshop.book.entity.*;
+import mylab.book.entity.*;
 
 public class ManageBook {
     public static void main(String[] args) {

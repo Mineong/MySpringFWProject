@@ -1,8 +1,9 @@
-package workshop.book.control;
+package mylab.book.control;
 
-import workshop.book.entity.*;
 import java.text.DecimalFormat;
 import java.util.*;
+
+import mylab.book.entity.*;
 
 public class StatisticsAnalyzer {
     public void printStatistics(Publication[] publications) {

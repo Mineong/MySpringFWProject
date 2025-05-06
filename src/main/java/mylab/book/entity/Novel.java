@@ -1,4 +1,4 @@
-package workshop.book.entity;
+package mylab.book.entity;
 
 public class Novel extends Publication {
     private String author;

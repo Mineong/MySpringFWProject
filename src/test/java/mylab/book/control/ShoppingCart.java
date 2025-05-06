@@ -1,7 +1,8 @@
-package workshop.book.control;
+package mylab.book.control;
 
-import workshop.book.entity.*;
 import java.util.*;
+
+import mylab.book.entity.*;
 
 public class ShoppingCart {
     private List<Publication> items;

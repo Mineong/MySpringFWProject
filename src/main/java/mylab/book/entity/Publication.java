@@ -1,4 +1,4 @@
-package workshop.book.entity;
+package mylab.book.entity;
 
 public class Publication {
     private String title;
