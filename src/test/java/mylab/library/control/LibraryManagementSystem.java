@@ -1,9 +1,9 @@
-package workshop.library.control;
-
-import workshop.library.entity.Book;
-import workshop.library.entity.Library;
+package mylab.library.control;
 
 import java.util.ArrayList;
+
+import mylab.library.entity.Book;
+import mylab.library.entity.Library;
 
 public class LibraryManagementSystem {
     public static void main(String[] args) {
