@@ -1,0 +1,5 @@
+INDEX VERSION 1.131
+C:\sts3.9-bundle\workspace\MySpringFW\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\40879691.index
+\SpringFWConfig\src\main\java
+C:\sts3.9-bundle\workspace\MySpringFW\.metadata\.plugins\org.eclipse.jst.jsp.core\jspsearch\683013617.index
+\SpringFWXml\src\main\java
