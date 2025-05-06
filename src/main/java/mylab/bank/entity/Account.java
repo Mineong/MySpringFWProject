@@ -1,4 +1,4 @@
-package workshop.bank.entity;
+package mylab.bank.entity;
 
 public abstract class Account {
     private String accountNumber;

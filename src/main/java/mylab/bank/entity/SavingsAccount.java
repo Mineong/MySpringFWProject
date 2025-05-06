@@ -1,4 +1,4 @@
-package workshop.bank.entity;
+package mylab.bank.entity;
 
 public class SavingsAccount extends Account {
     private double interestRate;
@@ -20,7 +20,7 @@ public class SavingsAccount extends Account {
             balance -= amount;
             System.out.println(amount + "원이 출금되었습니다. 현재 잔액: " + balance + "원");
         } else {
-            throw new workshop.bank.exception.InsufficientBalanceException("잔액 부족");
+            throw new mylab.bank.exception.InsufficientBalanceException("잔액 부족");
         }
     }
 

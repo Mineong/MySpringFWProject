@@ -1,6 +1,6 @@
-package workshop.bank.control;
+package mylab.bank.control;
 
-import workshop.bank.entity.*;
+import mylab.bank.entity.*;
 
 public class BankDemo {
     public static void main(String[] args) {

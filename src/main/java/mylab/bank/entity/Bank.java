@@ -1,7 +1,8 @@
-package workshop.bank.entity;
+package mylab.bank.entity;
 
 import java.util.*;
-import workshop.bank.exception.*;
+
+import mylab.bank.exception.*;
 
 public class Bank {
     private List<Account> accounts = new ArrayList<>();

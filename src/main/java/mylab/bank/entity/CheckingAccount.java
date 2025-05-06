@@ -1,4 +1,4 @@
-package workshop.bank.entity;
+package mylab.bank.entity;
 
 public class CheckingAccount extends Account {
     private double withdrawalLimit;
@@ -11,13 +11,13 @@ public class CheckingAccount extends Account {
     @Override
     public void withdraw(double amount) throws Exception {
         if (amount > withdrawalLimit) {
-            throw new workshop.bank.exception.WithdrawalLimitExceededException("출금 한도를 초과했습니다. 한도: " + withdrawalLimit + "원");
+            throw new mylab.bank.exception.WithdrawalLimitExceededException("출금 한도를 초과했습니다. 한도: " + withdrawalLimit + "원");
         }
         if (balance >= amount) {
             balance -= amount;
             System.out.println(amount + "원이 출금되었습니다. 현재 잔액: " + balance + "원");
         } else {
-            throw new workshop.bank.exception.InsufficientBalanceException("잔액 부족");
+            throw new mylab.bank.exception.InsufficientBalanceException("잔액 부족");
         }
     }
 

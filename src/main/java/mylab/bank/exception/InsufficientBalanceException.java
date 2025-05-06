@@ -1,4 +1,4 @@
-package workshop.bank.exception;
+package mylab.bank.exception;
 
 public class InsufficientBalanceException extends Exception {
     public InsufficientBalanceException(String msg) { super(msg); }
